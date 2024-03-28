@@ -28,3 +28,26 @@ exports.uploadToFirebaseStorage = async (file) => {
     fileStream.end(file.buffer);
   });
 };
+
+
+// Callback Approach
+// exports.uploadToFirebaseStorage = (file, callback) => {
+//   const fileName = `${file.originalname}_${randomUUID()}`;
+//   const fileStream = bucket.file(fileName).createWriteStream({
+//     metadata: {
+//       contentType: file.mimetype,
+//     },
+//   });
+
+//   fileStream.on('error', (error) => {
+//     callback(error, null);
+//   });
+
+//   fileStream.on('finish', () => {
+//     const fileUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(fileName)}?alt=media`;
+//     callback(null, fileUrl);
+//   });
+
+//   fileStream.end(file.buffer);
+// };
+
