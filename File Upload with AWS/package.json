@@ -7,7 +7,7 @@
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js"
   },
-  "author": "Yasir",
+  "author": "<https://github.com/Yasir-Hasann>",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.509.0",

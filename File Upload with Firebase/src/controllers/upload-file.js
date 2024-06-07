@@ -1,4 +1,7 @@
+// module imports
 const asyncHandler = require('express-async-handler');
+
+// file imports
 const { uploadToFirebaseStorage } = require('../middleware/upload');
 
 // @desc   Upload file

@@ -1,5 +1,8 @@
+// module imports
 const { randomUUID } = require('crypto');
 const admin = require('firebase-admin');
+
+// file imports
 const serviceAccount = require('../service-account.json');
 
 admin.initializeApp({
@@ -29,7 +32,6 @@ exports.uploadToFirebaseStorage = async (file) => {
   });
 };
 
-
 // Callback Approach
 // exports.uploadToFirebaseStorage = (file, callback) => {
 //   const fileName = `${file.originalname}_${randomUUID()}`;
@@ -50,4 +52,3 @@ exports.uploadToFirebaseStorage = async (file) => {
 
 //   fileStream.end(file.buffer);
 // };
-
