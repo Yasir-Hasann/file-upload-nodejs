@@ -1,9 +1,9 @@
 // module imports
-const { S3 } = require('aws-sdk'); // v2
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3'); // v3
 const asyncHandler = require('express-async-handler');
 const { randomUUID } = require('crypto');
 const sharp = require('sharp');
+const { S3 } = require('aws-sdk'); // v2
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3'); // v3
 
 exports.uploadV2 = asyncHandler(async (req, res, next) => {
   const s3 = new S3();
