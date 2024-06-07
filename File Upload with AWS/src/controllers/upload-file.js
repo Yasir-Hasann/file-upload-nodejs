@@ -1,6 +1,7 @@
-const { S3 } = require("aws-sdk");                                       // v2
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");   // v3
-const asyncHandler = require("express-async-handler");
+// module imports
+const { S3 } = require('aws-sdk'); // v2
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3'); // v3
+const asyncHandler = require('express-async-handler');
 const { randomUUID } = require('crypto');
 const sharp = require('sharp');
 
@@ -22,9 +23,6 @@ exports.uploadV2 = asyncHandler(async (req, res, next) => {
     next(error);
   }
 });
-
-
-
 
 exports.uploadV3 = asyncHandler(async (req, res, next) => {
   const s3client = new S3Client();
@@ -48,7 +46,6 @@ exports.uploadV3 = asyncHandler(async (req, res, next) => {
   }
 });
 
-
 exports.upload = asyncHandler(async (req, res, next) => {
   const { foldername } = req.headers;
 
@@ -58,9 +55,7 @@ exports.upload = asyncHandler(async (req, res, next) => {
   const { buffer, mimetype } = req.file;
   let resized = buffer;
   if (mimetype.includes('image')) {
-    resized = await sharp(buffer)
-      .jpeg({ quality: 30, progressive: true, force: false })
-      .png({ quality: 30, progressive: true, force: false });
+    resized = await sharp(buffer).jpeg({ quality: 30, progressive: true, force: false }).png({ quality: 30, progressive: true, force: false });
   }
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -78,4 +73,3 @@ exports.upload = asyncHandler(async (req, res, next) => {
     }
   });
 });
-

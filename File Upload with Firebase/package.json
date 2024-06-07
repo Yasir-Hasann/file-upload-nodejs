@@ -7,7 +7,7 @@
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
-  "author": "Yasir",
+  "author": "<https://github.com/Yasir-Hasann>",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
