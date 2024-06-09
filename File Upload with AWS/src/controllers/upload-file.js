@@ -1,6 +1,6 @@
 // module imports
-const asyncHandler = require('express-async-handler');
 const { randomUUID } = require('crypto');
+const asyncHandler = require('express-async-handler');
 const sharp = require('sharp');
 const { S3 } = require('aws-sdk'); // v2
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3'); // v3
@@ -18,7 +18,7 @@ exports.uploadV2 = asyncHandler(async (req, res, next) => {
     };
 
     const data = await s3.upload(params).promise();
-    res.status(200).send(data);
+    res.status(200).json(data);
   } catch (error) {
     next(error);
   }
@@ -69,7 +69,7 @@ exports.upload = asyncHandler(async (req, res, next) => {
       return next(new Error('Something went wrong'));
     }
     if (data) {
-      return res.status(200).send(data);
+      return res.status(200).json(data);
     }
   });
 });
