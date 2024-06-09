@@ -1,6 +1,6 @@
 // module imports
-const { randomUUID } = require('crypto');
 const admin = require('firebase-admin');
+const { randomUUID } = require('crypto');
 
 // file imports
 const serviceAccount = require('../service-account.json');
@@ -10,7 +10,7 @@ admin.initializeApp({
   storageBucket: 'your-app.appspot.com',
 });
 
-const bucket = admin.storage().bucket();
+bucket = admin.storage().bucket();
 
 exports.uploadToFirebaseStorage = async (file) => {
   const fileName = `${file.originalname}_${randomUUID()}`;
