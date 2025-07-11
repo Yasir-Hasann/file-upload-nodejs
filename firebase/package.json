@@ -1,0 +1,19 @@
+{
+  "name": "file-upload-firebase",
+  "version": "1.0.0",
+  "description": "File Upload using Firebase",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "author": "<https://github.com/Yasir-Hasann>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "firebase-admin": "^13.4.0",
+    "multer": "^2.0.1"
+  }
+}
