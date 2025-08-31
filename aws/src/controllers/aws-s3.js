@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 // file imports
 const { uploadUsingV2 } = require('../config/aws-v2-config');
 const { uploadUsingV3 } = require('../config/aws-v3-config');
-const { generatePresignedUrl, uploadToS3, listFilesInDirectory, checkFileExistence, deleteFileFromS3, checkDirectoryExistence, deleteDirectoryFromS3 } = require('../config/multer-s3-config');
+const { generatePresignedUrl, uploadToS3, listFilesInDirectory, checkFileExistence, deleteFileFromS3, checkDirectoryExistence, deleteDirectoryFromS3 } = require('../config/aws-multer-s3');
 const { fetchFileBuffer } = require('../utils/helper-methods');
 
 // @desc   Upload File
@@ -33,19 +33,16 @@ exports.uploadV3 = asyncHandler(async (req, res, next) => {
 });
 
 // @desc   Get Presigned URL
-// @route  GET /api/v1/aws-s3/get-presigned-url
+// @route  POST /api/v1/aws-s3/get-presigned-urls
 // @access Public
-exports.getPresignedUrl = asyncHandler(async (req, res, next) => {
-  const { folder, filename, expiryTime } = req.query;
-  if (!folder || !filename) throw new Error('Please enter the folder and the filename');
+exports.getPresignedUrls = asyncHandler(async (req, res, next) => {
+  const { folderName, fileNames, expiryTime } = req.body;
+  if (!fileNames || fileNames.length === 0) return next(new ErrorResponse('Please enter the fileNames', 400));
 
-  const data = await generatePresignedUrl(folder, filename, expiryTime);
-  if (!data) throw new Error('Failed to get presigned url');
+  const fileUploadPromises = fileNames.map((filename) => generatePresignedUrl(folderName, filename, expiryTime));
+  const data = await Promise.all(fileUploadPromises);
 
-  res.status(200).json({
-    success: true,
-    data,
-  });
+  res.status(200).json({ success: true, data });
 });
 
 // @desc   Upload File using URL

@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post('/upload-v2', multerMemoryUpload.single('file'), awsS3Controller.uploadV2);
 router.post('/upload-v3', multerMemoryUpload.single('file'), awsS3Controller.uploadV3);
-router.get('/get-presigned-url', awsS3Controller.getPresignedUrl);
+router.post('/get-presigned-urls', awsS3Controller.getPresignedUrls);
 router.post('/upload-file-url', awsS3Controller.uploadFileUrl);
 router.post('/upload-files-urls', awsS3Controller.uploadFilesUrls);
 router.post('/upload-file', multerMemoryUpload.single('file'), handleMulterErrors, awsS3Controller.uploadFile);
