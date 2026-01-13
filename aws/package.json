@@ -10,9 +10,9 @@
   "author": "<https://github.com/Yasir-Hasann>",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.844.0",
-    "@aws-sdk/s3-presigned-post": "^3.844.0",
-    "aws-sdk": "^2.1692.0",
+    "@aws-sdk/client-s3": "^3.967.0",
+    "@aws-sdk/s3-presigned-post": "^3.967.0",
+    "aws-sdk": "^2.1693.0",
     "axios": "^1.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
